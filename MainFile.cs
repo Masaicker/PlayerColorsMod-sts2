@@ -23,41 +23,89 @@ public partial class MainFile : Node
     public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } =
         new(ModId, MegaCrit.Sts2.Core.Logging.LogType.Generic);
 
-    // MOD 槽位预设色（4人）
+    // MOD 槽位预设色（最多16人）
     private static readonly Color[] SlotDrawColors =
-    {
-        new Color("E53935"), // 红
-        new Color("1E88E5"), // 蓝
-        new Color("43A047"), // 绿
-        new Color("FB8C00"), // 橙
-    };
+    [
+        new Color("E53935"), // 0  红
+        new Color("1E88E5"), // 1  蓝
+        new Color("43A047"), // 2  绿
+        new Color("FB8C00"), // 3  橙
+        new Color("8E24AA"), // 4  紫
+        new Color("00BCD4"), // 5  青
+        new Color("FDD835"), // 6  黄
+        new Color("EC407A"), // 7  粉红
+        new Color("5C6BC0"), // 8  靛蓝
+        new Color("7CB342"), // 9  柠檬绿
+        new Color("D81B60"), // 10 品红
+        new Color("00897B"), // 11 蓝绿
+        new Color("FF7043"), // 12 珊瑚橙
+        new Color("7E57C2"), // 13 淡紫
+        new Color("AEEA00"), // 14 亮黄绿
+        new Color("C2185B") // 15 玫红
+    ];
 
     // 光标专用色（高饱和度，半透明下仍可区分）
     private static readonly Color[] SlotCursorColors =
-    {
-        new Color("FF1744"), // 亮红
-        new Color("42A5F5"), // 亮蓝（高亮度，半透明下仍醒目）
-        new Color("76FF03"), // 黄绿（和蓝色拉开距离）
-        new Color("FF9100"), // 亮橙
-    };
+    [
+        new Color("FF1744"), // 0  亮红
+        new Color("42A5F5"), // 1  亮蓝
+        new Color("76FF03"), // 2  黄绿
+        new Color("FF9100"), // 3  亮橙
+        new Color("AA00FF"), // 4  亮紫
+        new Color("00E5FF"), // 5  亮青
+        new Color("FFFF00"), // 6  亮黄
+        new Color("FF4081"), // 7  亮粉红
+        new Color("536DFE"), // 8  亮靛蓝
+        new Color("B2FF59"), // 9  亮柠檬绿
+        new Color("F50057"), // 10 亮品红
+        new Color("1DE9B6"), // 11 亮蓝绿
+        new Color("FF6E40"), // 12 亮珊瑚橙
+        new Color("B388FF"), // 13 亮淡紫
+        new Color("C6FF00"), // 14 亮黄绿
+        new Color("E91E63") // 15 亮玫红
+    ];
 
     // 目标线颜色（比画画色亮一些，和原版角色同思路）
     private static readonly Color[] SlotLineColors =
-    {
-        new Color("FF6659FF"), // 亮红
-        new Color("6AB7FFFF"), // 亮蓝
-        new Color("76D275FF"), // 亮绿
-        new Color("FFBD45FF"), // 亮橙
-    };
+    [
+        new Color("FF6659FF"), // 0  亮红
+        new Color("6AB7FFFF"), // 1  亮蓝
+        new Color("76D275FF"), // 2  亮绿
+        new Color("FFBD45FF"), // 3  亮橙
+        new Color("B95CCFFF"), // 4  亮紫
+        new Color("4DD0E1FF"), // 5  亮青
+        new Color("FFF176FF"), // 6  亮黄
+        new Color("F48FB1FF"), // 7  亮粉红
+        new Color("9FA8DAFF"), // 8  亮靛蓝
+        new Color("AED581FF"), // 9  亮柠檬绿
+        new Color("F06292FF"), // 10 亮品红
+        new Color("4DB6ACFF"), // 11 亮蓝绿
+        new Color("FF8A65FF"), // 12 亮珊瑚橙
+        new Color("B39DDBFF"), // 13 亮淡紫
+        new Color("D4E157FF"), // 14 亮黄绿
+        new Color("E91E63FF") // 15 亮玫红
+    ];
 
     // 目标线轮廓色（比画画色暗一些）
     private static readonly Color[] SlotLineOutlineColors =
-    {
-        new Color("AB000DFF"), // 暗红
-        new Color("005CB2FF"), // 暗蓝
-        new Color("087F23FF"), // 暗绿
-        new Color("C68A00FF"), // 暗橙
-    };
+    [
+        new Color("AB000DFF"), // 0  暗红
+        new Color("005CB2FF"), // 1  暗蓝
+        new Color("087F23FF"), // 2  暗绿
+        new Color("C68A00FF"), // 3  暗橙
+        new Color("5C007AFF"), // 4  暗紫
+        new Color("006978FF"), // 5  暗青
+        new Color("C6A700FF"), // 6  暗黄
+        new Color("B4004EFF"), // 7  暗粉红
+        new Color("2C387EFF"), // 8  暗靛蓝
+        new Color("4B830DFF"), // 9  暗柠檬绿
+        new Color("A00037FF"), // 10 暗品红
+        new Color("005B4FFF"), // 11 暗蓝绿
+        new Color("C63F17FF"), // 12 暗珊瑚橙
+        new Color("4527A0FF"), // 13 暗淡紫
+        new Color("8C9900FF"), // 14 暗黄绿
+        new Color("8E0038FF") // 15 暗玫红
+    ];
 
     public static void Initialize()
     {
