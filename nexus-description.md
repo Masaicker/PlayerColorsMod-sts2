@@ -58,7 +58,6 @@ Slay the Spire 2/
 
 本项目遵循原游戏的 MOD 许可政策。
 
-[hr]
 
 [size=6][b]PlayerColors[/b][/size]
 
