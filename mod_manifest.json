@@ -2,6 +2,6 @@
   "pck_name": "PlayerColors",
   "name": "PlayerColors",
   "author": "Masaicker",
-  "description": "Custom player cursor colors for multiplayer",
+  "description": "Distinguish players by color when sharing the same character in multiplayer | 多人模式下相同角色时通过颜色区分玩家",
   "version": "v1.0.0"
 }
