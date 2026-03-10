@@ -8,8 +8,8 @@
 [*][b]重复角色颜色区分[/b]：当多名玩家选择相同角色时，自动为每位玩家分配不同的颜色
 [*][b]全方位颜色覆盖[/b]：画画、Ping 标记、目标线、远程光标、投票头像边框全部染色
 [*][b]支持最多 16 人[/b]：预设 16 种差异化颜色，自动循环使用
-[*][b]光标专用配色[/b]：高饱和度光标颜色，即使在 50% 半透明下仍清晰可辨
-[*][b]Bug 修复[/b]：修复原版目标线 gradient 共享导致颜色逐渐变黑的问题
+[*][b]光标增强[/b]：多人模式下始终增强光标饱和度，半透明状态更清晰（即使角色不同）
+[*][b]Bug 修复[/b]：修复原版目标线 gradient 共享导致颜色逐渐变黑的问题（多人模式下始终生效）
 [/list]
 
 [size=5][b]安装[/b][/size]
@@ -69,8 +69,8 @@ Slay the Spire 2/
 [*][b]Duplicate Character Color Distinction[/b]: Automatically assigns unique colors to each player when multiple players select the same character
 [*][b]Comprehensive Color Coverage[/b]: Colors drawing, ping markers, targeting lines, remote cursors, and vote icon borders
 [*][b]Supports up to 16 Players[/b]: 16 preset distinct colors with automatic cycling
-[*][b]Dedicated Cursor Colors[/b]: High-saturation cursor colors remain distinguishable at 50% opacity
-[*][b]Bug Fix[/b]: Fixed vanilla issue where shared gradient caused targeting lines to darken over time
+[*][b]Cursor Enhancement[/b]: Multiplayer mode always enhances cursor saturation for better visibility at 50% opacity (even with different characters)
+[*][b]Bug Fix[/b]: Fixed vanilla issue where shared gradient caused targeting lines to darken over time (always active in multiplayer)
 [/list]
 
 [size=5][b]Installation[/b][/size]

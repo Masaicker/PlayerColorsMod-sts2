@@ -8,7 +8,8 @@
 - **全方位颜色覆盖**：画画、Ping 标记、目标线、远程光标、投票头像边框全部染色
 - **支持最多 16 人**：预设 16 种差异化颜色，自动循环使用
 - **光标专用配色**：高饱和度光标颜色，50% 半透明下仍清晰可辨
-- **Bug 修复**：修复原版目标线 gradient 共享导致颜色越来越黑的问题
+- **光标增强**：多人模式下始终增强光标饱和度，半透明状态更清晰（即使角色不同）
+- **Bug 修复**：修复原版目标线 gradient 共享导致颜色越来越黑的问题（多人模式下始终生效）
 
 ## 安装
 
@@ -71,7 +72,8 @@ Distinguish players by color when sharing the same character in multiplayer.
 - **Comprehensive Color Coverage**: Colors drawing, ping markers, targeting lines, remote cursors, and vote icon borders
 - **Supports up to 16 Players**: 16 preset distinct colors with automatic cycling
 - **Dedicated Cursor Colors**: High-saturation cursor colors remain distinguishable at 50% opacity
-- **Bug Fix**: Fixed vanilla issue where shared gradient caused targeting lines to darken over time
+- **Cursor Enhancement**: Multiplayer mode always enhances cursor saturation for better visibility at 50% opacity (even with different characters)
+- **Bug Fix**: Fixed vanilla issue where shared gradient caused targeting lines to darken over time (always active in multiplayer)
 
 ## Installation
 
