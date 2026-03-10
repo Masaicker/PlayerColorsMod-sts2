@@ -16,9 +16,9 @@ using MegaCrit.Sts2.Core.Runs;
 namespace PlayerColors;
 
 [ModInitializer(nameof(Initialize))]
-public partial class MainFile : Node
+public static class MainFile
 {
-    private const string ModId = "PlayerColors";
+    private const string ModId = "Mhz.playercolors";
 
     public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } =
         new(ModId, MegaCrit.Sts2.Core.Logging.LogType.Generic);
