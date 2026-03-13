@@ -8,9 +8,11 @@ packages/
 .vs/
 .claude/
 .serena/
+.template.config/
 publish/
 Properties/
 .editorconfig
 *.import
 *.uid
 *.user
+*.DotSettings
