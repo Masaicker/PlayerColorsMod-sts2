@@ -329,4 +329,38 @@ public static class MainFile
             }
         }
     }
+
+    /// <summary>
+    /// Patch 6: 多人玩家状态面板头像描边（仅在有重复角色时添加描边）
+    /// </summary>
+    [HarmonyPatch(typeof(NMultiplayerPlayerState), "_Ready")]
+    static class Patch_PlayerStatePortrait
+    {
+        static void Postfix(NMultiplayerPlayerState __instance)
+        {
+            if (!HasDuplicateCharacters()) return;
+
+            var player = __instance.Player;
+
+            int slot = GetSlotIndex(player);
+            Color color = SlotDrawColors[slot % SlotDrawColors.Length];
+
+            // 创建描边节点
+            var outline = new TextureRect();
+            outline.Name = "Outline";
+            outline.Texture = player.Character.IconOutlineTexture;
+            outline.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
+            outline.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
+            outline.Modulate = color;
+            outline.ShowBehindParent = true;
+            outline.LayoutMode = 1;
+            outline.AnchorRight = 1f;
+            outline.AnchorBottom = 1f;
+            outline.GrowHorizontal = Control.GrowDirection.Both;
+            outline.GrowVertical = Control.GrowDirection.Both;
+
+            __instance._characterIcon.AddChild(outline);
+            __instance._characterIcon.MoveChild(outline, 0);
+        }
+    }
 }
