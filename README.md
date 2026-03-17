@@ -6,9 +6,9 @@
 
 - **重复角色颜色区分**：当多名玩家选择相同角色时，自动为每位玩家分配不同的颜色
 - **全方位颜色覆盖**：画画、Ping 标记、目标线、鼠标、投票头像边框、队友头像边框全部染色
+- **目标线 & 鼠标**：多人模式下始终染色区分（即使角色不同）
 - **支持最多 16 人**：预设 16 种差异化颜色，自动循环使用
-- **光标专用配色**：高饱和度光标颜色，50% 半透明下仍清晰可辨
-- **鼠标增强**：多人模式下始终增强鼠标饱和度，半透明状态更清晰（即使角色不同）
+- **鼠标专用配色**：高饱和度颜色，50% 半透明下仍清晰可辨
 - **Bug 修复**：修复原版目标线 gradient 共享导致颜色越来越黑的问题（多人模式下始终生效）
 
 ## 安装
@@ -70,10 +70,10 @@ Distinguish players by color when sharing the same character in multiplayer.
 
 - **Duplicate Character Color Distinction**: Automatically assigns unique colors to each player when multiple players select the same character
 - **Comprehensive Color Coverage**: Colors drawing, ping markers, targeting lines, mouse cursors, vote icon borders, and teammate portrait borders
+- **Targeting Lines & Mouse**: Always colored in multiplayer mode (even with different characters)
 - **Supports up to 16 Players**: 16 preset distinct colors with automatic cycling
-- **Dedicated Cursor Colors**: High-saturation cursor colors remain distinguishable at 50% opacity
-- **Mouse Enhancement**: Multiplayer mode always enhances mouse cursor saturation for better visibility at 50% opacity (even with different characters)
-- **Bug Fix**: Fixed vanilla issue where shared gradient caused targeting lines to darken over time (always active in multiplayer)
+- **Dedicated Mouse Colors**: High-saturation colors remain distinguishable at 50% opacity
+- **Bug Fix**: Fixed vanilla targeting line gradient darkening issue (always active in multiplayer)
 
 ## Installation
 
