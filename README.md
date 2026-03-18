@@ -13,13 +13,13 @@
 
 ## 安装
 
-1. 将 `PlayerColors.dll` 和 `PlayerColors.pck` 复制到游戏目录下的 `mods` 文件夹：
+1. 将 `PlayerColors.dll` 和 `PlayerColors.json` 复制到游戏目录下的 `mods` 文件夹：
 
    ```
    Slay the Spire 2/
    └── mods/
        ├── PlayerColors.dll
-       └── PlayerColors.pck
+       └── PlayerColors.json
    ```
 
 2. 启动游戏，MOD 会自动加载
@@ -77,13 +77,13 @@ Distinguish players by color when sharing the same character in multiplayer.
 
 ## Installation
 
-1. Copy `PlayerColors.dll` and `PlayerColors.pck` to the `mods` folder in your game directory:
+1. Copy `PlayerColors.dll` and `PlayerColors.json` to the `mods` folder in your game directory:
 
    ```
    Slay the Spire 2/
    └── mods/
        ├── PlayerColors.dll
-       └── PlayerColors.pck
+       └── PlayerColors.json
    ```
 
 2. Launch the game, the mod will load automatically

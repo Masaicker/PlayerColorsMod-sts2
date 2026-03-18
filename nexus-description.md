@@ -14,13 +14,13 @@
 
 [size=5][b]安装[/b][/size]
 
-1. 将 [b]PlayerColors.dll[/b] 和 [b]PlayerColors.pck[/b] 复制到游戏目录下的 [b]mods[/b] 文件夹：
+1. 将 [b]PlayerColors.dll[/b] 和 [b]PlayerColors.json[/b] 复制到游戏目录下的 [b]mods[/b] 文件夹：
 
 [code]
 Slay the Spire 2/
 └── mods/
     ├── PlayerColors.dll
-    └── PlayerColors.pck
+    └── PlayerColors.json
 [/code]
 
 2. 启动游戏，MOD 会自动加载
@@ -75,13 +75,13 @@ Slay the Spire 2/
 
 [size=5][b]Installation[/b][/size]
 
-1. Copy [b]PlayerColors.dll[/b] and [b]PlayerColors.pck[/b] to the [b]mods[/b] folder in your game directory:
+1. Copy [b]PlayerColors.dll[/b] and [b]PlayerColors.json[/b] to the [b]mods[/b] folder in your game directory:
 
 [code]
 Slay the Spire 2/
 └── mods/
     ├── PlayerColors.dll
-    └── PlayerColors.pck
+    └── PlayerColors.json
 [/code]
 
 2. Launch the game — the mod will load automatically
