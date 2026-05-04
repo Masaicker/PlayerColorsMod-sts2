@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Modding;
@@ -9,7 +10,10 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Multiplayer;
+using MegaCrit.Sts2.Core.Nodes.Screens;
+using MegaCrit.Sts2.Core.Nodes.Screens.Capstones;
 using MegaCrit.Sts2.Core.Nodes.Screens.Map;
+using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Runs;
 
@@ -287,8 +291,47 @@ public static class MainFile
         }
     }
 
+    private static NetScreenType GetCurrentScreen(NMapScreen mapScreen, NCapstoneContainer capstoneContainer, NOverlayStack overlayStack)
+    {
+        if (mapScreen == null || capstoneContainer == null || overlayStack == null) return NetScreenType.Room;
+
+        var capstoneScreen = capstoneContainer.CurrentCapstoneScreen?.ScreenType ?? NetScreenType.None;
+        if (capstoneScreen != NetScreenType.None) return capstoneScreen;
+        if (mapScreen.Visible) return NetScreenType.Map;
+
+        var overlayScreen = overlayStack.Peek();
+        if (overlayScreen is NRewardsScreen { IsComplete: false }) return overlayScreen.ScreenType;
+        if (overlayScreen != null && overlayScreen.ScreenType != NetScreenType.None && overlayScreen.ScreenType != NetScreenType.Rewards)
+        {
+            return overlayScreen.ScreenType;
+        }
+
+        return NetScreenType.Room;
+    }
+
     /// <summary>
-    /// Patch 4: 远程光标染色（多人模式下始终生效）
+    /// Patch 4: 初始化运行场景后立即同步一次本地屏幕状态
+    /// </summary>
+    [HarmonyPatch(typeof(NRun), "_Ready")]
+    static class Patch_InitialScreenSync
+    {
+        static void Postfix(NRun __instance)
+        {
+            if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer) return;
+
+            var inputSynchronizer = RunManager.Instance.InputSynchronizer;
+            var globalUi = __instance.GlobalUi;
+            if (inputSynchronizer == null || globalUi == null) return;
+
+            inputSynchronizer.SyncLocalScreen(GetCurrentScreen(
+                globalUi.MapScreen,
+                globalUi.CapstoneContainer,
+                globalUi.Overlays));
+        }
+    }
+
+    /// <summary>
+    /// Patch 5: 远程光标染色（多人模式下始终生效）
     /// AddCursor 在 lobby 阶段调用时 NRun.Instance 还不存在，
     /// 所以改为 patch UpdateImage，它在光标每次状态更新时调用（进入游戏后持续触发）
     /// </summary>
@@ -305,7 +348,7 @@ public static class MainFile
     }
 
     /// <summary>
-    /// Patch 5: 投票头像边框染色（仅在有重复角色时添加描边）
+    /// Patch 6: 投票头像边框染色（仅在有重复角色时添加描边）
     /// </summary>
     [HarmonyPatch(typeof(NMultiplayerVoteContainer), nameof(NMultiplayerVoteContainer.RefreshPlayerVotes))]
     static class Patch_VoteIcon
@@ -331,36 +374,41 @@ public static class MainFile
     }
 
     /// <summary>
-    /// Patch 6: 多人玩家状态面板头像描边（仅在有重复角色时添加描边）
+    /// Patch 7: 多人玩家状态面板头像描边（仅在有重复角色时添加描边）
     /// </summary>
     [HarmonyPatch(typeof(NMultiplayerPlayerState), "_Ready")]
     static class Patch_PlayerStatePortrait
     {
+        private const string OutlineNodeName = "PlayerColorsOutline";
+
         static void Postfix(NMultiplayerPlayerState __instance)
         {
             if (!HasDuplicateCharacters()) return;
 
             var player = __instance.Player;
-
             int slot = GetSlotIndex(player);
             Color color = SlotDrawColors[slot % SlotDrawColors.Length];
+            var outline = __instance._characterIcon.GetNodeOrNull<TextureRect>(OutlineNodeName);
 
-            // 创建描边节点
-            var outline = new TextureRect();
-            outline.Name = "Outline";
+            if (outline == null)
+            {
+                outline = new TextureRect();
+                outline.Name = OutlineNodeName;
+                outline.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
+                outline.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
+                outline.ShowBehindParent = true;
+                outline.LayoutMode = 1;
+                outline.AnchorRight = 1f;
+                outline.AnchorBottom = 1f;
+                outline.GrowHorizontal = Control.GrowDirection.Both;
+                outline.GrowVertical = Control.GrowDirection.Both;
+
+                __instance._characterIcon.AddChild(outline);
+                __instance._characterIcon.MoveChild(outline, 0);
+            }
+
             outline.Texture = player.Character.IconOutlineTexture;
-            outline.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
-            outline.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
             outline.Modulate = color;
-            outline.ShowBehindParent = true;
-            outline.LayoutMode = 1;
-            outline.AnchorRight = 1f;
-            outline.AnchorBottom = 1f;
-            outline.GrowHorizontal = Control.GrowDirection.Both;
-            outline.GrowVertical = Control.GrowDirection.Both;
-
-            __instance._characterIcon.AddChild(outline);
-            __instance._characterIcon.MoveChild(outline, 0);
         }
     }
 }
