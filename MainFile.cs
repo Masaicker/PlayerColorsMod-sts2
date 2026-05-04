@@ -319,11 +319,8 @@ public static class MainFile
         {
             if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer) return;
 
-            var inputSynchronizer = RunManager.Instance.InputSynchronizer;
             var globalUi = __instance.GlobalUi;
-            if (inputSynchronizer == null || globalUi == null) return;
-
-            inputSynchronizer.SyncLocalScreen(GetCurrentScreen(
+            RunManager.Instance.InputSynchronizer.SyncLocalScreen(GetCurrentScreen(
                 globalUi.MapScreen,
                 globalUi.CapstoneContainer,
                 globalUi.Overlays));
