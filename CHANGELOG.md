@@ -1,5 +1,9 @@
 # Changelog
 
+# v1.0.6
+* 修复：适配游戏更新，修正 API 命名变更（IsSingleplayerOrFakeMultiplayer）
+* Fixed: Adapt to game update, fix renamed API (IsSingleplayerOrFakeMultiplayer)
+
 # v1.0.5
 * 修复：重连或重新加载多人会话后，队友鼠标可能在第一场战斗中不可见
 * 修复：队友头像边框重复初始化时可能重复创建描边节点

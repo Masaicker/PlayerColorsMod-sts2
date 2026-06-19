@@ -317,7 +317,7 @@ public static class MainFile
     {
         static void Postfix(NRun __instance)
         {
-            if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer) return;
+            if (RunManager.Instance.IsSingleplayerOrFakeMultiplayer) return;
 
             var globalUi = __instance.GlobalUi;
             RunManager.Instance.InputSynchronizer.SyncLocalScreen(GetCurrentScreen(
